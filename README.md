@@ -1,1 +1,3 @@
-# digital-library
+# Digital Library
+
+Digital Library Web App

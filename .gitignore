@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# VS-Code
+.vscode/
+
+# MySQL Config
+mysql.cnf
+
+# Django Stuff Updated
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
