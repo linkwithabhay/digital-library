@@ -1,0 +1,204 @@
+{% extends 'authentication/base.html' %}
+
+
+{% block content_auth %}
+<h2>
+  {% if form.password2 %}
+    Create your Library Account
+  {% else %}
+    Sign in
+  {% endif %}
+</h2>
+
+<form class="form-auth" method="POST">
+  {% csrf_token %}
+  
+  {% if form.non_field_errors %}
+    <div class="errornote">
+      {% if form.non_field_errors|length == 1 %}
+        {{form.non_field_errors|first}}
+      {% else %}
+        {% for error in form.non_field_errors %}
+          {{forloop.counter}}-{{error}}
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  {% if form.first_name %}
+    <div class="form-row">
+      <input
+        class="input-auth{% if form.errors.last_name %} input-error{% endif %}"
+        type="text"
+        name="first_name"
+        id="id_first_name"
+        maxlength="30"
+        minlength="3"
+        placeholder="First Name"
+        autocapitalize="words"
+        autofocus
+        autocomplete="off"
+        value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}"
+      />
+    </div>
+  {% endif %}
+  
+  {% if form.last_name %}
+    <div class="form-row">
+      <input
+        class="input-auth{% if form.errors.last_name %} input-error{% endif %}"
+        type="text"
+        name="last_name"
+        id="id_last_name"
+        maxlength="30"
+        minlength="3"
+        placeholder="Last Name"
+        autocapitalize="words"
+        autocomplete="off"
+        autofocus
+        value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"
+      />
+    </div>
+  {% endif %}
+  
+  {% if form.email %}
+    <div class="form-row">
+      <input
+        class="input-auth{% if form.errors.email %} input-error{% endif %}"
+        type="email"
+        name="email"
+        id="id_email"
+        maxlength="254"
+        placeholder="Email"
+        autocapitalize="words"
+        autocomplete="off"
+        autofocus
+        value="{% if form.email.value %}{{form.email.value}}{% endif %}"
+      />
+    </div>
+  {% endif %}
+  
+  <div class="form-row">
+    <input
+      class="input-auth{% if form.errors.username or form.non_field_errors %} input-error{% endif %}"
+      type="text"
+      name="username"
+      id="id_username"
+      maxlength="150"
+      required
+      autofocus
+      placeholder="Username"
+      {% if form.password2 %}
+        autocomplete="off"
+      {% endif %}
+      value="{% if form.username.value %}{{form.username.value}}{% endif %}"
+    />
+    {% if form.errors.username %}
+      <div class="msg error">
+        <ul>
+          {% for error in form.errors.username %}
+            <li>
+              {{error}}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% elif form.username.help_text %}
+      <div class="msg help">
+        {{form.username.help_text|safe}}
+      </div>
+    {% endif %}
+  </div>
+  
+  <div class="form-row">
+    <input
+      class="input-auth{% if form.errors.password or form.errors.password2 or form.non_field_errors %} input-error{% endif %}"
+      type="password"
+      required
+      {% if form.password2 %}
+        name="password1"
+        id="id_password1"
+        minlength="8"
+        autocomplete="off"
+      {% else %}
+        name="password"
+        id="id_password"
+      {% endif %}
+      placeholder="Password"
+      value=""
+    />
+    {% if form.errors.password1 %}
+      <div class="msg error">
+        <ul>
+          {% for error in form.errors.password1 %}
+            <li>
+              {{error}}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% elif form.password1.help_text %}
+      <div class="msg help">
+        {{form.password1.help_text|safe}}
+      </div>
+    {% endif %}
+  </div>
+  
+  {% if form.password2 %}
+    <div class="form-row">
+      <input
+        class="input-auth{% if form.password2.errors %} input-error{% endif %}"
+        type="password"
+        name="password2"
+        id="id_password2"
+        required
+        minlength="8"
+        placeholder="Confirm Password"
+        autocomplete="off"
+        value=""
+      />
+      {% if form.errors.password2 %}
+        <div class="msg error">
+          <ul>
+            {% for error in form.errors.password2 %}
+              <li>
+                {{error}}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% elif form.password2.help_text %}
+        <div class="msg help">
+          {{form.password2.help_text|safe}}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="form-row flexed flexed-gap-2">
+    <input type="checkbox" id="show_password" class="input-checkbox-lg">
+    <label for="show_password">Show password</label>
+  </div>
+  
+  <div class="flexed flexed-gap flexed-hr-apart flexed-revrs">
+    <input class="input-submit" type="submit" value="Submit" />
+    {% if form.password2 %}
+      <a class="link link-btn link-btn-outlined" href="{% url 'account:login' %}">
+        Sign in instead
+      </a>
+    {% else %}
+      <a class="link link-btn link-btn-outlined" href="{% url 'account:register' %}">
+        Create account
+      </a>
+    {% endif %}
+  </div>
+</form>
+
+{% comment %} <h2>Another Form</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Submit" />
+</form> {% endcomment %}
+
+{% endblock content_auth %}

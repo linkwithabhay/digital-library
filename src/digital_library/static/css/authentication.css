@@ -1,0 +1,118 @@
+.container {
+  margin: 3rem auto;
+  min-height: 50vh;
+  min-width: fit-content;
+  height: auto;
+  width: auto;
+  max-width: 600px;
+}
+header {
+  padding: 3rem 2.5rem 0rem;
+  margin: 1rem auto 0;
+  border: 1px solid #dadce0;
+  border-bottom: none;
+}
+main {
+  padding: 0rem 2.5rem 2.25rem;
+  margin: 0 auto 1rem;
+  border: 1px solid #dadce0;
+  border-top: none;
+}
+header > h1, main > h2 {
+  margin: 0 auto;
+  width: fit-content;
+  color: #202124;
+}
+main > h2 {
+  padding: 1rem 0 0;
+  margin-bottom: 1rem;
+}
+
+.form-auth {
+  min-width: 220px;
+  max-width: 300px;
+  margin: 1rem auto;
+}
+.form-row {
+  margin: 2rem auto;
+}
+
+.input-submit {
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.5rem 0.8rem;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+  outline: none;
+  color: white;
+  background-color: #1a73e8;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #1a73e8;
+}
+.input-auth {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.4rem 0.5rem;
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid grey;
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+}
+.input-auth:focus {
+  border-color: transparent;
+  outline-color: #1a73e8;
+  outline-width: 2px;
+}
+.input-auth.input-error{
+  border-color: transparent;
+  outline-color: #d93025;
+}
+.input-checkbox-lg {
+  width: 16px;
+  height: 16px;
+}
+
+.msg {
+  margin: 0.5rem;
+  font-size: 12px;
+}
+.msg > ul > li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.msg > ul > li::before {
+  font-size: 14px;
+  color: inherit;
+  font-family: 'Material Icons Round';
+}
+.error {
+  color: #d93025;
+}
+.error > ul > li::before {
+  content: "error";
+}
+.help {
+  color: #5f6368;
+}
+.help>ul>li::before {
+  content: "info";
+}
+
+.errornote {
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  padding: 10px 12px;
+  margin: 0 0 10px 0;
+  color: #d93025;
+  border: 1px solid #d93025;
+  border-radius: 4px;
+  background-color: #fff;
+}

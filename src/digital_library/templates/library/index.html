@@ -1,0 +1,21 @@
+{% extends 'library/base.html' %}
+
+{% block content_library %}
+<div class="main__head">
+  <h2>Home Page</h2>
+  <div class="main__head__content">
+    <nav></nav>
+    {% if request.user.is_authenticated %}
+      <div class="flexed flexed-gap">
+        <a class="link" href="{% url 'account:home' %}">{{request.user}}</a>
+        <a class="link" href="{% url 'account:logout' %}">Logout</a>
+      </div>
+    {% else %}
+      <a class="link" href="{% url 'account:login' %}">Login</a>
+    {% endif %}
+  </div>
+</div>
+<div class="main__content">
+  
+</div>
+{% endblock content_library %}

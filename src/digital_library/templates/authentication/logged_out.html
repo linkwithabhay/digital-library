@@ -1,0 +1,7 @@
+{% extends 'library/base.html' %}
+
+
+{% block content_library %}
+<p>You have been logged out.</p>
+<p>Try to <a class="link" href="{% url 'account:login' %}">Login</a>.</p>
+{% endblock content_library %}
